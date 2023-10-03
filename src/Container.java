@@ -4,14 +4,16 @@ import java.util.Scanner;
 
 import Controller.ControllerInventaris;
 import Controller.ControllerKaryawan;
+import Controller.ControllerTransactions;
 import ObjectInstances.Item;
 import ObjectInstances.Karyawan;
+import ObjectInstances.Motor;
 import ObjectInstances.Transaction;
 
 public class Container {
     private ControllerKaryawan instanceKaryawan = new ControllerKaryawan();
     private ControllerInventaris instanceInventaris = new ControllerInventaris();
-    private Transaction transaksi = new Transaction();
+    private ControllerTransactions instanceTransactions = new ControllerTransactions();
 
     private boolean isInited = false;
 
@@ -48,6 +50,16 @@ public class Container {
         karyawans.add(new Karyawan("Hussain", 'L', 500000, "Montir"));
 
         instanceKaryawan.addBatchKaryawan(karyawans);
+
+        List<Transaction> transactions = new ArrayList<>();
+        List<String> services = new ArrayList<>();
+        services.add("Ganti Oli");
+        services.add("Ganti");
+        transactions.add(
+            new Transaction(instanceKaryawan.getKaryawan(2), instanceKaryawan.getKaryawan(2),
+            new Motor("N1234BD", 160, "km/h", "Samsul", false, "Honda", 3, 2, "Yellow"),
+            services)
+        );
         
     }
 }

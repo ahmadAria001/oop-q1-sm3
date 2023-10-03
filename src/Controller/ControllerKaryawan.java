@@ -34,6 +34,20 @@ public class ControllerKaryawan {
 
         return retValue;
     }
+    
+    public Karyawan getKaryawan(String name) {
+        Karyawan retValue = null;
+        
+        for (int key : listKaryawan.keySet()) {
+            retValue = listKaryawan.get(key).getNama().equalsIgnoreCase(name) ? listKaryawan.get(key) : null;
+        }
+
+        return retValue;
+    }
+    
+    public Karyawan getKaryawan(int id) {
+        return listKaryawan.get(id);
+    }
 
     public void addKaryawan(Karyawan karyawan) {
         this.listKaryawan.put(idKaryawan++, karyawan);

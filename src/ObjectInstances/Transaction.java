@@ -1,6 +1,7 @@
 package ObjectInstances;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Transaction {
@@ -8,13 +9,16 @@ public class Transaction {
     private Karyawan engineer;
     private Kendaraan vehicle;
     private List<String> services = new ArrayList<>();
+    private HashMap<Item,Integer> consumedItems = new HashMap<>();
     
     public Transaction() {
     }
 
-    public Transaction(Karyawan cashier, Karyawan engineer) {
+    public <T> Transaction(Karyawan cashier, Karyawan engineer, T vehicle, List<String> services) {
         this.cashier = cashier;
         this.engineer = engineer;
+        this.setVehicle(vehicle);
+        this.addBatchService(services);
     }
 
     public Karyawan getCashier() {
@@ -53,5 +57,53 @@ public class Transaction {
 
     public void setServices(List<String> services) {
         this.services = services;
+    }
+
+    public void addService(String service) {
+        this.services.add(service);
+    }
+    public void addBatchService(List<String> services) {
+        for (int i = 0; i < services.size(); i++) {
+            this.services.add(services.get(i));
+        }
+    }
+
+    public void setVehicle(Kendaraan vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public HashMap<Item,Integer> getConsumedItems() {
+        return consumedItems;
+    }
+
+    public void setConsumedItems(HashMap<Item,Integer> consumedItems) {
+        this.consumedItems = consumedItems;
+    }
+
+    public void addConsumedItem(Item consumedItem, int amount) {
+        this.consumedItems.put(consumedItem, amount);
+    }
+    
+    public void addConsumedItems(HashMap<Item,Integer> itemsConsumed) {
+        if (itemsConsumed.size() < 1) throw new Error("atleast has to be 1 item in the list");
+        
+        for (Item key : itemsConsumed.keySet()) {
+            if (itemsConsumed.get(key) < 1) throw new Error("atleast has to be 1 item in the list");
+            break;
+        }
+
+        this.consumedItems.putAll(itemsConsumed);
+    }
+
+    public Item removeItem(String itemName) {
+        Item removedItem = null;
+
+        for (Item key : consumedItems.keySet()) {
+            if (key.getNamaBarang().equals(itemName))
+            removedItem = key;
+            this.consumedItems.remove(key);
+        }
+
+        return removedItem;
     }
 }
