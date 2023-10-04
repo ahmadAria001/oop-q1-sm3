@@ -5,9 +5,8 @@ public class Item {
     private int stok;
     private String satuan;
     private long hargaSatuan;
-    
-    public Item() {
-    }
+
+    public Item() {}
 
     public Item(String namaBarang, int stok, String satuan, long hargaSatuan) {
         this.namaBarang = namaBarang;
@@ -48,5 +47,8 @@ public class Item {
         this.hargaSatuan = hargaSatuan;
     }
 
-    
+    public void printItem() {
+        System.out.printf("Nama Barang: %s\nStock: %s\nHarga: %s\nSatuan: %s\n", getNamaBarang(), getStok(),
+                getHargaSatuan(), getSatuan());
+    }
 }

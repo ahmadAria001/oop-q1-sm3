@@ -5,7 +5,7 @@ public class Karyawan {
     private char JK;
     private long gajiPokok;
     private String jabatan;
-    
+
     public Karyawan(String nama, char JK, long gajiPokok, String jabatan) {
         this.nama = nama;
         this.JK = JK;
@@ -13,8 +13,7 @@ public class Karyawan {
         this.jabatan = jabatan;
     }
 
-    public Karyawan() {
-    }
+    public Karyawan() {}
 
     public String getNama() {
         return nama;
@@ -47,8 +46,9 @@ public class Karyawan {
     public void setJabatan(String jabatan) {
         this.jabatan = jabatan;
     }
-    
+
     public void printKaryawan() {
-        System.out.printf("Nama Karyawan: %s\nJK: %s\nGaji Pokok: %s\nJabatan: %s\n",nama,JK,gajiPokok,jabatan);
+        System.out.printf("Nama Karyawan: %s\nJK: %s\nGaji Pokok: %s\nJabatan: %s\n\n", getNama(), getJK(),
+                getGajiPokok(), getJabatan());
     }
 }

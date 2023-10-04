@@ -5,6 +5,7 @@ public abstract class Kendaraan {
     private float maxSpeed;
     private String satuanKecepatan;
     private String owner;
+    private boolean status = false;
     
     public Kendaraan() {
     }
@@ -48,6 +49,16 @@ public abstract class Kendaraan {
         this.owner = owner;
     }
 
-    
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void power() {
+        this.status = this.status ? false : true;
+    }
 
 }
